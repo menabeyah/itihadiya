@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environnements virtuels
+venv/
+env/
+ENV/
+
+# Fichiers de base de données SQLite
+db.sqlite3
+*.sqlite3
+
+# Fichiers de log
+*.log
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers compilés
+*.pyc
+*.pyo
+*.pyd
+
+# Fichiers coverage (tests)
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Fichiers statiques collectés (si tu utilises collectstatic)
+staticfiles/
+media/
+
+# Configs d’IDE (optionnel)
+.vscode/
+.idea/
+
+# Fichiers secrets
+.env
+*.env
