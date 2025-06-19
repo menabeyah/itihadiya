@@ -1,0 +1,1 @@
+web: gunicorn itihadiya.wsgi 

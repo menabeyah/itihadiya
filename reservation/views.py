@@ -12,6 +12,8 @@ from .models import Trajet, Reservation
 from .models import Ville
 from django.shortcuts import get_object_or_404
 from .models import Reservation
+from django.contrib import messages
+
 
 
 def liste_trajets(request):

@@ -1,76 +1,33 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Itihadiya - Réserver un billet</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-</head>
 <body class="container mt-4">
 
-    <h1>Réserver un billet</h1>
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  {% endif %}
 
-    <form method="post" novalidate>
-        {% csrf_token %}
-        {{ form.as_p }}
+  <h1>Réserver un billet</h1>
 
-        <!-- Un seul élément d'affichage dynamique -->
-        <p id="places-disponibles" class="text-info font-weight-bold"></p>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
 
-        <button type="submit" class="btn btn-primary">Réserver</button>
-    </form>
+    <!-- Un seul élément d'affichage dynamique -->
+    <p id="places-disponibles" class="text-info font-weight-bold"></p>
 
-    <a href="{% url 'liste_trajets' %}" class="btn btn-link mt-3">← Retour à la liste des trajets</a>
+    <button type="submit" class="btn btn-primary">Réserver</button>
+  </form>
 
-    <!-- JavaScript placé en bas -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const trajetSelect = document.getElementById('id_trajet');
-        const placesInfo = document.getElementById('places-disponibles');
+  <a href="{% url 'liste_trajets' %}" class="btn btn-link mt-3">← Retour à la liste des trajets</a>
 
-        function resetColors() {
-            placesInfo.classList.remove('text-success', 'text-warning', 'text-danger', 'text-info');
-        }
-
-        trajetSelect.addEventListener('change', function () {
-            const trajetId = this.value;
-
-            if (trajetId) {
-                fetch(`/ajax/places/?trajet_id=${trajetId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.places_disponibles !== undefined) {
-                            const places = data.places_disponibles;
-
-                            placesInfo.textContent = `Places disponibles : ${places}`;
-                            resetColors();
-
-                            if (places >= 5) {
-                                placesInfo.classList.add('text-success');  // Vert
-                            } else if (places >= 2) {
-                                placesInfo.classList.add('text-warning');  // Orange
-                            } else {
-                                placesInfo.classList.add('text-danger');   // Rouge
-                            }
-                        } else {
-                            placesInfo.textContent = "Erreur de chargement.";
-                            resetColors();
-                            placesInfo.classList.add('text-danger');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Erreur AJAX :', error);
-                        placesInfo.textContent = "Erreur de connexion.";
-                        resetColors();
-                        placesInfo.classList.add('text-danger');
-                    });
-            } else {
-                placesInfo.textContent = '';
-                resetColors();
-            }
-        });
-    });
-    </script>
+  <!-- JavaScript placé en bas -->
+  <script>
+    // Ton script JS ici
+  </script>
 
 </body>
-</html>
-
