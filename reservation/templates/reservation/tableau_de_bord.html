@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tableau de bord - Admin Itihadiya</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+    <h1>Tableau de bord Admin</h1>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="alert alert-info">
+                <strong>Total de trajets :</strong> {{ total_trajets }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="alert alert-success">
+                <strong>Total de réservations :</strong> {{ total_reservations }}
+            </div>
+        </div>
+    </div>
+
+    <h3>Réservations par trajet</h3>
+    <table class="table table-striped">
+        <tr>
+            <th>Trajet</th>
+            <th>Nombre de réservations</th>
+        </tr>
+        {% for item in reservations_par_trajet %}
+        <tr>
+            <td>{{ item.trajet__depart__nom }} → {{ item.trajet__arrivee__nom }}</td>
+            <td>{{ item.total }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

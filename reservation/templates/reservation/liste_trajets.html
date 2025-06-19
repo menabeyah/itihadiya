@@ -1,0 +1,37 @@
+{% extends 'reservation/base.html' %}
+{% load static %}
+{% block title %}Liste des trajets - Itihadiya{% endblock %}
+{% block content %}
+    <h1 class="mb-4">Liste des trajets disponibles</h1>
+
+    <a href="{% url 'reserver' %}" class="btn btn-success mb-3">Réserver un billet</a>
+    <a href="{% url 'inscription' %}" class="btn btn-outline-primary mr-2">Créer un compte</a>
+    <a href="{% url 'login' %}" class="btn btn-outline-success">Se connecter</a>
+
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Départ</th>
+                <th>Arrivée</th>
+                <th>Date</th>
+                <th>Prix</th>
+                <th>Places disponibles</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trajet in trajets %}
+                <tr>
+                    <td>{{ trajet.depart }}</td>
+                    <td>{{ trajet.arrivee }}</td>
+                    <td>{{ trajet.date_depart }}</td>
+                    <td>{{ trajet.prix }} MRU</td>
+                    <td>{{ trajet.places_disponibles }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">Aucun trajet disponible pour le moment.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
