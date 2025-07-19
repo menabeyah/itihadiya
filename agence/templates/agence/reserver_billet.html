@@ -1,0 +1,9 @@
+<h2>Réserver un billet - {{ agence.nom }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Réserver</button>
+</form>
+
+<a href="{% url 'accueil' %}">Retour à l’accueil</a>

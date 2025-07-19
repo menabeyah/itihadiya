@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Agences</title>
+</head>
+<body>
+    <h1>Liste des Agences de Bus</h1>
+    <a href="{% url 'ajouter_agence' %}">➕ Ajouter une Agence</a>
+    <ul>
+        {% for agence in agences %}
+            <li>{{ agence.nom }}</li>
+        {% empty %}
+            <li>Aucune agence trouvée.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

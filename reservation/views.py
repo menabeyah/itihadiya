@@ -133,3 +133,4 @@ def get_places_disponibles(request):
         return JsonResponse({'places_disponibles': trajet.places_disponibles})
     except Trajet.DoesNotExist:
         return JsonResponse({'error': 'Trajet introuvable'}, status=404)
+    

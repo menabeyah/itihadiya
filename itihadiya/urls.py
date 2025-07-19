@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from agence import views as agence_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('reservation.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),  # Connexion / Déconnexion
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', agence_views.accueil, name='accueil'),  # PAGE D’ACCUEIL
+    path('agences/', include('agence.urls')),  
 ]

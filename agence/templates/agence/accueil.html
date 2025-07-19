@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accueil - Itihadiya</title>
+</head>
+<body>
+    <h1>Bienvenue sur Itihadiya</h1>
+
+    <h2>Nos Agences de Bus</h2>
+    <ul>
+        {% for agence in agences %}
+            <li>
+                {{ agence.nom }} - 
+                <a href="{% url 'reserver_billet' agence.id %}">Réserver un billet</a>
+            </li>
+        {% empty %}
+            <li>Aucune agence disponible pour le moment.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
